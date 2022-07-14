@@ -10,7 +10,35 @@
 #define COM_NO_WINDOWS_H
 #include <objbase.h>
 #include <float.h>
+
+// NOTE: I added these so that DirectX-9 could be used in old projects that are still compiling
+// with MSVC6. This solves the issue, since they were added in MSVC8.
+#if __cplusplus > 199711L
 #include <sal.h>
+#endif
+
+#if __cplusplus <= 199711L
+#define __null
+#define __in
+#define __in_opt
+#define __in_z
+#define __in_z_opt
+#define __in_bcount(x)
+#define __in_bcount_opt(x)
+#define __in_ecount(x)
+#define __in_ecount_opt(x)
+#define __out_ecount_opt(x)
+#define __out
+#define __out_opt
+#define __out_ecount(x)
+#define __out_bcount(x)
+#define __out_bcount_opt(x)
+#define __deref_out
+#define __deref_out_bcount(x)
+#define __deref_opt_out_bcount(x)
+typedef unsigned long ULONG_PTR, * PULONG_PTR;
+typedef ULONG_PTR DWORD_PTR, * PDWORD_PTR;
+#endif
 
 #ifndef DIRECTSOUND_VERSION
 
