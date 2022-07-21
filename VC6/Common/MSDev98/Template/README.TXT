@@ -1,1 +1,0 @@
-The Visual C++ Resource Templates and Custom AppWizards are installed at this location. User-created Resource Templates should be copied here in order for them to show up in the Insert Resource dialog.
