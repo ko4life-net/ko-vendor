@@ -4,6 +4,7 @@ Static archives compiled with the following commands:
 ```bat
 git clone https://github.com/madler/zlib
 cd zlib
+git checkout v1.2.12
 mkdir _build
 cd _build
 cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX=.
