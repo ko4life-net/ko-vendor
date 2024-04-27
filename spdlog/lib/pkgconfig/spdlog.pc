@@ -1,4 +1,4 @@
-prefix=C:/spdlog/build/pkg
+prefix=C:/ko/_new/spdlog/_build/pkg
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${exec_prefix}/lib
@@ -6,8 +6,8 @@ libdir=${exec_prefix}/lib
 Name: libspdlog
 Description: Fast C++ logging library.
 URL: https://github.com/gabime/spdlog
-Version: 1.10.0
-CFlags: -I${includedir} -DSPDLOG_COMPILED_LIB
+Version: 1.13.0
+CFlags: -I${includedir} -DSPDLOG_COMPILED_LIB -DSPDLOG_USE_STD_FORMAT
 Libs: -L${libdir} -lspdlog -pthread
 Requires: 
 
