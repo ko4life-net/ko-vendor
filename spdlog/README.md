@@ -2,11 +2,13 @@
 
 Static archives compiled with the following commands:
 ```bat
-git clone https://github.com/gabime/spdlog.git --branch=v1.13.0
+git clone --branch=v1.14.1 https://github.com/ko4life-net/spdlog.git
 cd spdlog
-mkdir _build && cd _build
+mkdir build
+cd build
 
 cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX=pkg -DSPDLOG_USE_STD_FORMAT=ON -DSPDLOG_BUILD_EXAMPLE=OFF -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded$<$<CONFIG:Debug>:Debug>" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
+
 cmake --build . --config Debug --target install
 cmake --build . --config Release --target install
 ```
