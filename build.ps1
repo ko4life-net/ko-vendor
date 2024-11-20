@@ -17,6 +17,7 @@ $VER_JPEGLIB = "3.0.3"
 $VER_ZLIB = "v1.3.1"
 $VER_SPDLOG = "v1.14.1"
 $VER_IMGUI = "v1.90.7"
+$VER_SIMPLEINI = "v4.23"
 
 
 function build_jpeglib {
@@ -123,12 +124,31 @@ function build_imgui {
   cd $WORK_DIR
 }
 
+function build_simpleini {
+  Write-Host "Building simpleini..."
+  git clone --branch=$VER_SIMPLEINI --depth=1 https://github.com/ko4life-net/simpleini
+  cd simpleini
+  mkdir build
+  cd build
+
+  # There is no actual lib here, since it is a header only library
+  cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX=pkg
+  cmake --build . --config Release --target install
+
+  Remove-Item $PSScriptRoot\simpleini\include, $PSScriptRoot\simpleini\lib -Recurse -Force -ErrorAction SilentlyContinue
+  Copy-Item .\pkg\include $PSScriptRoot\simpleini\include\simpleini\ -Recurse
+  Copy-Item .\pkg\lib $PSScriptRoot\simpleini\ -Recurse
+
+  cd $WORK_DIR
+}
+
 function build_projects {
   if ($projects -contains "all") {
     build_jpeglib
     build_zlib
     build_spdlog
     build_imgui
+    build_simpleini
   } else {
     foreach ($project in $projects) {
       switch ($project.ToLower()) {
@@ -136,6 +156,7 @@ function build_projects {
         "zlib" { build_zlib }
         "spdlog" { build_spdlog }
         "imgui" { build_imgui }
+        "simpleini" { build_simpleini }
         default { Write-Host "Unknown project: [$project]" }
       }
     }
